@@ -1,9 +1,9 @@
 // script.js – versão com indicador robusto e tratamento recursivo de objetos/arrays
 
 document.addEventListener('DOMContentLoaded', () => {
-  const form            = document.getElementById('cnpj-form');
-  const input           = document.getElementById('cnpj-input');
-  const container       = document.getElementById('result-container');
+  const form = document.getElementById('cnpj-form');
+  const input = document.getElementById('cnpj-input');
+  const container = document.getElementById('result-container');
   const statusContainer = document.getElementById('status-container');
 
   form.addEventListener('submit', async e => {
@@ -58,8 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
       statusContainer.append(indicador, texto);
       // ===============================================
 
-      // renderiza todos os campos normalmente
+      // dentro do try, logo após criar 'texto' e antes de renderObject:
+
+      // seleciona o wrapper
+      const resultBox = document.getElementById('result-box');
+      // limpa classes antigas e aplica a nova
+      resultBox.classList.remove('active', 'inactive');
+      resultBox.classList.add(situacao ? 'active' : 'inactive');
+
+      // agora insere indicador e depois renderiza o resto
+      statusContainer.append(indicador, texto);
       renderObject(data, container);
+
 
     } catch (err) {
       statusContainer.innerHTML = '';

@@ -131,3 +131,22 @@ button {
 #status-container #status-text {
   font-weight: bold;
 }
+
+/* style.css – acréscimos */
+
+/* wrapper que vai ganhar a borda colorida */
+#result-box {
+  padding: 15px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  margin-top: 20px;
+  transition: border-color 0.3s ease;
+}
+
+/* ativo = borda verde; inativo = borda vermelha */
+#result-box.active {
+  border-color: #4CAF50;
+}
+#result-box.inactive {
+  border-color: #F44336;
+}
