@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       statusContainer.innerHTML = '';
 
       // === monta o indicador de situação cadastral robusto ===
-      const rawSituacao = data.situacao_cadastral ?? data.status;
+      const rawSituacao = data.descricao_situacao_cadastral ?? data.status;
       let situacao = false;
 
       // Se veio string, compara “ativa” (case-insensitive)
