@@ -51,9 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
       // Texto explicativo ao lado
       const texto = document.createElement('span');
       texto.id = 'status-text';
-      texto.textContent = situacao
-        ? 'Cadastral: ATIVA'
-        : `Cadastral: INATIVA (Motivo: ${motivo})`;
+      if (situacao) {
+        texto.textContent = 'Situação Cadastral: ATIVA';
+      } else {
+        // usa innerHTML para inserir a quebra de linha
+        texto.innerHTML = 
+          'Situação Cadastral: INATIVA<br>' +
+          `Motivo: ${motivo}`;
+      }
+      
 
       statusContainer.append(indicador, texto);
       // ===============================================
