@@ -104,3 +104,30 @@ button {
 .result-array-item textarea {
   background: #fff;
 }
+
+/* container do status, antes dos campos */
+#status-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* quadradinho de cor */
+.status-indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.status-indicator.active {
+  background-color: #4CAF50; /* verde */
+}
+.status-indicator.inactive {
+  background-color: #F44336; /* vermelho */
+}
+
+/* texto ao lado do quadrado */
+#status-container #status-text {
+  font-weight: bold;
+}

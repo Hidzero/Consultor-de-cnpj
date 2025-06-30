@@ -1,14 +1,17 @@
 // script.js – versão com tratamento recursivo de objetos/arrays
 
 document.addEventListener('DOMContentLoaded', () => {
-  const form      = document.getElementById('cnpj-form');
-  const input     = document.getElementById('cnpj-input');
-  const container = document.getElementById('result-container');
+  const form            = document.getElementById('cnpj-form');
+  const input           = document.getElementById('cnpj-input');
+  const container       = document.getElementById('result-container');
+  const statusContainer = document.getElementById('status-container');
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const cnpj = input.value.replace(/\D/g, '');
+    // limpa tudo antes de cada consulta
     container.innerHTML = '';
+    statusContainer.innerHTML = '';
 
     if (cnpj.length !== 14) {
       container.innerHTML = `<p class="error">CNPJ deve ter 14 dígitos numéricos.</p>`;
@@ -21,9 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const resp = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`);
       if (!resp.ok) throw new Error(`Erro ${resp.status}: ${resp.statusText}`);
       const data = await resp.json();
+      // limpa mensagens antigas
       container.innerHTML = '';
+      statusContainer.innerHTML = '';
+
+      // === monta o indicador de situação cadastral ===
+      const situacao = (data.situacao_cadastral || '').toLowerCase() === 'ativa';
+      const motivo   = data.motivo_situacao_cadastral || '(sem informação)';
+      const indicador = document.createElement('div');
+      indicador.classList.add('status-indicator', situacao ? 'active' : 'inactive');
+
+      const texto = document.createElement('span');
+      texto.id = 'status-text';
+      texto.textContent = situacao
+        ? 'Cadastral: ATIVA'
+        : `Cadastral: INATIVA (Motivo: ${motivo})`;
+
+      statusContainer.append(indicador, texto);
+      // ===============================================
+
+      // renderiza todos os campos normalmente
       renderObject(data, container);
+
     } catch (err) {
+      statusContainer.innerHTML = '';
       container.innerHTML = `<p class="error">Falha na requisição: ${err.message}</p>`;
     }
   });
