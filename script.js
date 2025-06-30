@@ -1,4 +1,4 @@
-// script.js – versão com tratamento recursivo de objetos/arrays
+// script.js – versão com indicador robusto e tratamento recursivo de objetos/arrays
 
 document.addEventListener('DOMContentLoaded', () => {
   const form            = document.getElementById('cnpj-form');
@@ -28,12 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
       container.innerHTML = '';
       statusContainer.innerHTML = '';
 
-      // === monta o indicador de situação cadastral ===
-      const situacao = (data.situacao_cadastral || '').toLowerCase() === 'ativa';
-      const motivo   = data.motivo_situacao_cadastral || '(sem informação)';
+      // === monta o indicador de situação cadastral robusto ===
+      const rawSituacao = data.situacao_cadastral ?? data.status;
+      let situacao = false;
+
+      // Se veio string, compara “ativa” (case-insensitive)
+      if (typeof rawSituacao === 'string') {
+        situacao = rawSituacao.toLowerCase() === 'ativa';
+      }
+      // Se veio booleano, true significa ativo
+      else if (typeof rawSituacao === 'boolean') {
+        situacao = rawSituacao;
+      }
+
+      // Motivo ou fallback
+      const motivo = data.motivo_situacao_cadastral || '(sem informação)';
+
+      // Cria o quadradinho colorido
       const indicador = document.createElement('div');
       indicador.classList.add('status-indicator', situacao ? 'active' : 'inactive');
 
+      // Texto explicativo ao lado
       const texto = document.createElement('span');
       texto.id = 'status-text';
       texto.textContent = situacao
