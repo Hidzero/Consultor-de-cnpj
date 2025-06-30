@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consulta CNPJ</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Consulta CNPJ</h1>
+    <form id="cnpj-form">
+      <input
+        type="text"
+        id="cnpj-input"
+        placeholder="Digite o CNPJ (somente números)"
+        maxlength="14"
+        required
+      />
+      <button type="submit">Consultar</button>
+    </form>
+    <div id="result-container">
+      <!-- Campos de resultado serão inseridos aqui -->
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

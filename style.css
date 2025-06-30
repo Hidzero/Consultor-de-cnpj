@@ -1,0 +1,106 @@
+/* style.css */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+input#cnpj-input {
+  flex: 1;
+  padding: 8px;
+  font-size: 1rem;
+}
+button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+/* novo estilo para o “formulário” de resultados */
+#result-container {
+  max-width: 100%;
+  overflow-x: auto;
+  word-break: break-word;
+}
+.result-field {
+  display: flex;
+  flex-direction: column;
+}
+.result-field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+.result-field input {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+.result-field textarea {
+  width: 100%;
+  padding: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fafafa;
+  resize: none;       /* impede redimensionamento manual */
+  overflow: hidden;   /* oculta barra de rolagem */
+  white-space: pre-wrap;       /* mantém quebras e embrulha texto */
+  word-wrap: break-word;       /* quebra palavras longas */
+}
+
+/* container geral de array */
+.result-array {
+  grid-column: span 2;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+/* campo-label da array */
+.result-array > .array-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+/* cada item dentro da array */
+.result-array-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fafafa;
+}
+/* título de cada item */
+.result-array-item legend {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+/* inputs dentro de arrays continuam com a mesma classe */
+.result-field input {
+  background: #fff;
+}
+
+.result-array-item textarea {
+  background: #fff;
+}
