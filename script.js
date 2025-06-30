@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Motivo ou fallback
-      const motivo = data.motivo_situacao_cadastral || '(sem informação)';
+      const motivo = data.descricao_motivo_situacao_cadastral || '(sem informação)';
 
       // Cria o quadradinho colorido
       const indicador = document.createElement('div');
